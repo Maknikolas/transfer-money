@@ -40,7 +40,7 @@ Run the application
 
 ### API Endpoints
 
-POST /transactions: Make a financial transaction between two accounts.
+POST /transaction: Make a financial transaction between two accounts.
 
 Example Request:
 Here's an example of a POST request to make a transaction:

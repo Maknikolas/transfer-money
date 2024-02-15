@@ -15,7 +15,7 @@ public class TransferMoneyController {
     TransactionService transactionService; // Service for business logic
 
     @CrossOrigin
-    @PostMapping("/transactions")
+    @PostMapping("/transaction")
     public ResponseEntity<String> transfer(@RequestBody TransactionRequest request) {
         try {
             Transaction transaction = transactionService.processTransaction(request);
