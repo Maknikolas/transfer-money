@@ -1,19 +1,35 @@
 package com.example.task.model;
 
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+
+@Entity
 public class Transaction {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    private String sourceAccountId;
-    private String destinationAccountId;
-    private String amount;
+    @ManyToOne
+    @JoinColumn(name = "source_account_id", nullable = false)
+    private Account sourceAccount;
+    @ManyToOne
+    @JoinColumn(name = "target_account_id", nullable = false)
+    private Account targetAccount;
+    @Column(nullable = false)
+    private BigDecimal amount;
+    @Column(nullable = false)
     private String currency;
 
-    public Transaction(Long id, String sourceAccountId, String destinationAccountId, String amount, String currency) {
-        this.id = id;
-        this.sourceAccountId = sourceAccountId;
-        this.destinationAccountId = destinationAccountId;
+    public Transaction(Account sourceAccount, Account targetAccount, BigDecimal amount, String currency) {
+        this.sourceAccount = sourceAccount;
+        this.targetAccount = targetAccount;
         this.amount = amount;
         this.currency = currency;
+    }
+
+    public Transaction() {
+
     }
 
     public Long getId() {
@@ -24,27 +40,27 @@ public class Transaction {
         this.id = id;
     }
 
-    public String getSourceAccountId() {
-        return sourceAccountId;
+    public Account getSourceAccount() {
+        return sourceAccount;
     }
 
-    public void setSourceAccountId(String sourceAccountId) {
-        this.sourceAccountId = sourceAccountId;
+    public void setSourceAccount(Account sourceAccount) {
+        this.sourceAccount = sourceAccount;
     }
 
-    public String getDestinationAccountId() {
-        return destinationAccountId;
+    public Account getTargetAccount() {
+        return targetAccount;
     }
 
-    public void setDestinationAccountId(String destinationAccountId) {
-        this.destinationAccountId = destinationAccountId;
+    public void setTargetAccount(Account targetAccount) {
+        this.targetAccount = targetAccount;
     }
 
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

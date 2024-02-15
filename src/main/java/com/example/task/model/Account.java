@@ -1,16 +1,29 @@
 package com.example.task.model;
 
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+
+@Entity
 public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    private long balance;
-    private String currency;
+    @Column(nullable = false)
+    private BigDecimal balance;
+    @Column(nullable = false)
+   private String currency;
+    @Column(nullable = false)
     private String createdAt;
 
-    public Account(Long id, long balance, String currency, String createdAt) {
-        this.id = id;
+    public Account(BigDecimal balance, String currency, String createdAt) {
         this.balance = balance;
         this.currency = currency;
         this.createdAt = createdAt;
+    }
+    public Account(){
+
     }
 
     public Long getId() {
@@ -21,11 +34,11 @@ public class Account {
         this.id = id;
     }
 
-    public long getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
