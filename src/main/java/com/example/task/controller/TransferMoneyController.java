@@ -19,7 +19,7 @@ public class TransferMoneyController {
     public ResponseEntity<String> transfer(@RequestBody TransactionRequest request) {
         try {
             Transaction transaction = transactionService.processTransaction(request);
-            return ResponseEntity.ok(transaction.toString());
+            return ResponseEntity.ok("Successful transfer");
         } catch (Error e) {
             // Could change to internal server error
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

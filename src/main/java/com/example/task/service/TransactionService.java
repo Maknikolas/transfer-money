@@ -7,6 +7,7 @@ import com.example.task.repository.AccountRepository;
 import com.example.task.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -18,6 +19,7 @@ public class TransactionService {
     @Autowired
     public TransactionRepository transactionRepository;
 
+    @Transactional
     public Transaction processTransaction(TransactionRequest request) {
         Account sourceAccount = accountRepository.findById(request.getSourceAccountId()).orElseThrow(() -> new RuntimeException("Source account not found"));
         Account targetAccount = accountRepository.findById(request.getTargetAccountId()).orElseThrow(() -> new RuntimeException("Target account not found"));
